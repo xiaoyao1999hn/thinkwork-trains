@@ -4,6 +4,7 @@ import cn.chengjie.trains.domain.Edge;
 import cn.chengjie.trains.domain.Route;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
 public class TrainsUtil {
 
     public static void findPath(List<Edge> edges, String startV, String endV, Route route) {
-        if (route.getVertices().indexOf(startV) > -1) {
+        if (route.getStations().indexOf(startV) > -1) {
             return;
         }
         for (int i = 0; i < edges.size(); i++) {
@@ -22,14 +23,14 @@ public class TrainsUtil {
             if (node.getStartV().equals(startV)) {
                 //如果相等则找到路径
                 if (node.getEndV().equals(endV)) {
-                    route.addVertex(node.getStartV());
-                    route.addVertex(node.getEndV());
+                    route.addStation(node.getStartV());
+                    route.addStation(node.getEndV());
                     System.out.println("find path:" + route.toString() + "\n");
-                    route.addTracks(route.getVertices());
-                    route.getVertices().clear();
-                    return;
+                    route.addTracks(route.getStations());
+                    route.getStations().clear();
+                    continue;
                 }
-                route.addVertex(node.getStartV());
+                route.addStation(node.getStartV());
                 findPath(edges, node.getEndV(), endV, route);
             }
         }
@@ -59,8 +60,13 @@ public class TrainsUtil {
         nodeList.add(node9);
         Route route = new Route();
 
-        findPath(nodeList, "A", "D", route);
+        findPath(nodeList, "C", "C", route);
 
-        System.out.print(route.getTracks().size());
+//        DistanceHandler distanceHandler =new  DistanceHandler(nodeList);
+//
+//        List<String> temp = Arrays.asList("E","D","C");
+//        int length=distanceHandler.getDistance(temp);
+//        System.out.println(length);
+//        System.out.println(route.getTracks().size());
     }
 }

@@ -10,29 +10,29 @@ import java.util.List;
  */
 public class Route {
 
-    List<String> vertices;
+    List<String> stations;
     
     List<List<String>> tracks;
 
     public Route(){
-        vertices=new LinkedList<>();
+        stations =new LinkedList<>();
         tracks=new LinkedList<>();
     }
 
-    public int getVertexCount(){
-        return vertices.size();
+    public int getStationCount(){
+        return stations.size();
     }
 
-    public void addVertex(String vertex){
-        vertices.add(vertex);
+    public void addStation(String station){
+        stations.add(station);
     }
 
-    public List<String> getVertices() {
-        return vertices;
+    public List<String> getStations() {
+        return stations;
     }
 
-    public void setVertices(List<String> vertices) {
-        this.vertices = vertices;
+    public void setStations(List<String> stations) {
+        this.stations = stations;
     }
     
     public void addTracks(List<String> track){
@@ -50,7 +50,7 @@ public class Route {
     @Override
     public String toString() {
         StringBuffer buffer =  new StringBuffer();
-        vertices.stream().forEach(x->buffer.append(x).append("->"));
+        stations.stream().forEach(x->buffer.append(x).append("->"));
         buffer.replace(buffer.length()-2,buffer.length(),"");
         return buffer.toString();
     }
