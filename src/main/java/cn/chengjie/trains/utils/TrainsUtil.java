@@ -4,7 +4,9 @@ import cn.chengjie.trains.domain.Edge;
 import cn.chengjie.trains.domain.Route;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ：Chengjie
@@ -35,8 +37,29 @@ public class TrainsUtil {
         }
     }
 
-    public static void main(String[] args) {
 
+    public int getDistance(Map<String, List<Edge>> trainsMap, List<String> nodeList) {
+        int distance = 0;
+        String startNode = nodeList.get(0);
+        nodeList.remove(startNode);
+        int count = 0;
+        for (String node : nodeList) {
+            List<Edge> edges = trainsMap.get(node);
+            for (Edge edge : edges) {
+                count++;
+                if (edge.getEndV().equals(node)) {
+                    distance += edge.getDistance();
+                    break;
+                }
+            }
+            if (count == edges.size()) {
+                return 0;
+            }
+        }
+        return distance;
+    }
+
+    public static void main(String[] args) {
 
         List<Edge> nodeList = new ArrayList<>();
         Edge node1 = new Edge("A", "B", 5);
@@ -61,6 +84,15 @@ public class TrainsUtil {
 
         findPath(nodeList, "A", "D", route);
 
+        Map<String,List<Edge>> map =new HashMap<>();
+        nodeList.forEach(x->{
+            List<Edge> edges= map.get(x.getStartV());
+            if (edges==null||edges.size()==0){
+                edges=new ArrayList<>();
+            }
+            edges.add(x);
+            map.put(x.getStartV(),edges);
+        });
         System.out.print(route.getTracks().size());
     }
 }

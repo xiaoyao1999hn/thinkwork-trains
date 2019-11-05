@@ -13,14 +13,7 @@ import java.util.Map;
  */
 public class DistanceHandler {
 
-    Map<String, List<Edge>> trainsMap;
-
-    public void init(List<Edge> nodeList) {
-        trainsMap = new HashMap<>();
-
-    }
-
-    public int getDistance(List<String> nodeList) {
+    public int getDistance(Map<String, List<Edge>>trainsMap, List<String> nodeList) {
         int distance = 0;
         String startNode = nodeList.get(0);
         nodeList.remove(startNode);
@@ -40,5 +33,4 @@ public class DistanceHandler {
         }
         return distance;
     }
-
 }
