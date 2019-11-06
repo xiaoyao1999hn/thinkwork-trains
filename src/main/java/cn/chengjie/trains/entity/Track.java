@@ -15,13 +15,18 @@ public class Track implements Cloneable,Serializable {
 //    List<String> path;
     StringBuffer path;
 
-    int count;
+    int pathLength;
 
     public Track(String start) {
         this.start = start;
         path = new StringBuffer();
         path.append(start);
-        count = 0;
+        pathLength = 0;
+    }
+
+    public void add(Edge edge){
+        this.pathLength +=edge.getDistance();
+        this.path.append(edge.getEnd());
     }
 
     public StringBuffer getPath() {
@@ -32,12 +37,12 @@ public class Track implements Cloneable,Serializable {
         this.path = path;
     }
 
-    public int getCount() {
-        return count;
+    public int getPathLength() {
+        return pathLength;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setPathLength(int pathLength) {
+        this.pathLength = pathLength;
     }
 
     @Override

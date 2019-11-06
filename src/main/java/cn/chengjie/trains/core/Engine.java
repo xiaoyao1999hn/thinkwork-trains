@@ -2,6 +2,8 @@ package cn.chengjie.trains.core;
 
 import cn.chengjie.trains.entity.Edge;
 import cn.chengjie.trains.entity.Track;
+import cn.chengjie.trains.predicates.DefaultPredicate;
+import cn.chengjie.trains.predicates.Predicate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +17,11 @@ public class Engine {
     
     public static void main(String[] args){
         Graph graph =new Graph(fromList());
+        Predicate predicate=new  DefaultPredicate();
+        graph.setPredicate(predicate);
         List<Track> list =graph.listTrack("C","C");
         list.forEach(x->{
-            System.out.println(x.getPath().toString()+"--------"+x.getCount());
+            System.out.println(x.getPath().toString()+"--------"+x.getPathLength());
         });
 
         System.out.println();
