@@ -15,7 +15,7 @@ import java.util.List;
 public class TrainsUtil {
 
     public static void findPath(List<Edge> edges, String startV, String endV, Route route) {
-        if (route.getStations().contains(startV)) {
+        if (route.getStations().indexOf(startV) > -1) {
             return;
         }
         for (int i = 0; i < edges.size(); i++) {
@@ -38,7 +38,6 @@ public class TrainsUtil {
 
     public static void main(String[] args) {
 
-
         List<Edge> nodeList = new ArrayList<>();
         Edge node1 = new Edge("A", "B", 5);
         Edge node2 = new Edge("B", "C", 4);
@@ -60,7 +59,7 @@ public class TrainsUtil {
         nodeList.add(node9);
         Route route = new Route();
 
-        findPath(nodeList, "B", "B", route);
+        findPath(nodeList, "A", "B", route);
 
 //        DistanceHandler distanceHandler =new  DistanceHandler(nodeList);
 //
