@@ -51,7 +51,10 @@ public class Route {
     public String toString() {
         StringBuffer buffer =  new StringBuffer();
         stations.stream().forEach(x->buffer.append(x).append("->"));
-        buffer.replace(buffer.length()-2,buffer.length(),"");
+        if(stations.size()>0){
+            buffer.replace(buffer.length()-2,buffer.length(),"");
+        }
+
         return buffer.toString();
     }
 }
