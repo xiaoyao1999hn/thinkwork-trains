@@ -97,4 +97,23 @@ public class Graph {
         }
 
     }
+
+
+//    public int showRouteDistance(List<String> stationList) {
+//        Distance distance = new Distance();
+//        distance.setWeight(0);
+//        int index=0;
+//        int temp =0;
+//        while(index<stationList.size()-1){
+//            temp=distance.getWeight();
+//            String startNode=stationList.get(index);
+//            String endNode=stationList.get(++index);
+//            List<Edge> edges = trainsMap.get(startNode);
+//            edges.stream().filter(x->x.getEndV().equals(endNode)).findFirst().ifPresent(x->distance.setWeight(distance.getWeight()+x.getDistance()));
+//            if(temp==distance.getWeight()){
+//                return -1;
+//            }
+//        }
+//        return distance.getWeight();
+//    }
 }
