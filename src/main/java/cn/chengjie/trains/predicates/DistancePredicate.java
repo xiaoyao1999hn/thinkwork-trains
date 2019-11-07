@@ -6,8 +6,15 @@ import cn.chengjie.trains.entity.Condition;
  * @description：
  */
 public class DistancePredicate implements  Predicate {
+
+    int maxDistance;
+
+    public DistancePredicate(int maxDistance){
+        this.maxDistance=maxDistance;
+    }
+
     @Override
     public boolean test(Condition condition) {
-        return condition.getDistance()<condition.getMaxDistance();
+        return condition.getDistance()>=maxDistance;
     }
 }

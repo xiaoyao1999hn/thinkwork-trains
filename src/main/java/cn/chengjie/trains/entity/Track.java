@@ -12,7 +12,6 @@ public class Track implements Cloneable,Serializable {
 
     String start;
 
-//    List<String> path;
     StringBuffer path;
 
     int pathLength;
@@ -24,7 +23,11 @@ public class Track implements Cloneable,Serializable {
         pathLength = 0;
     }
 
-    public void add(Edge edge){
+    /**
+     * 更新路径并统计距离
+     * @param edge
+     */
+    public void refreshTrack(Edge edge){
         this.pathLength +=edge.getDistance();
         this.path.append(edge.getEnd());
     }
@@ -45,6 +48,11 @@ public class Track implements Cloneable,Serializable {
         this.pathLength = pathLength;
     }
 
+
+    /**
+     * 这里采用深拷贝
+     * @return
+     */
     @Override
     public Track clone() {
         ByteArrayOutputStream byteOut = null;

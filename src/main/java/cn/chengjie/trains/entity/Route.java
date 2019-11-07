@@ -19,7 +19,6 @@ public class Route {
         trackList=new ArrayList<>();
     }
 
-
     public List<Track> getTrackList() {
         return trackList;
     }

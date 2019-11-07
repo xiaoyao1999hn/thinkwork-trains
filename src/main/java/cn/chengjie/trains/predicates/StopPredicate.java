@@ -7,8 +7,14 @@ import cn.chengjie.trains.entity.Condition;
  * @description：
  */
 public class StopPredicate implements  Predicate{
+    int stopCount=0;
+
+    public StopPredicate(int stopCount) {
+        this.stopCount = stopCount;
+    }
+
     @Override
     public boolean test(Condition condition) {
-        return condition.getTrack().getPath().length()>condition.getStop();
+        return condition.getTrack().getPath().length()>stopCount;
     }
 }

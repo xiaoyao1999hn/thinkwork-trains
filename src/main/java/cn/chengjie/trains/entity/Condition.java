@@ -9,21 +9,15 @@ public class Condition {
 
     Track track;
 
-    int stop;
-
     int distance;
-
-    int maxDistance;
 
     Route route;
 
     Edge edge;
 
-    public Condition(Track track, int stop, int distance, int maxDistance, Route route, Edge edge) {
+    public Condition(Track track, int distance, Route route, Edge edge) {
         this.track = track;
-        this.stop = stop;
         this.distance = distance;
-        this.maxDistance = maxDistance;
         this.route = route;
         this.edge = edge;
     }
@@ -36,28 +30,12 @@ public class Condition {
         this.track = track;
     }
 
-    public int getStop() {
-        return stop;
-    }
-
-    public void setStop(int stop) {
-        this.stop = stop;
-    }
-
     public int getDistance() {
         return distance;
     }
 
     public void setDistance(int distance) {
         this.distance = distance;
-    }
-
-    public int getMaxDistance() {
-        return maxDistance;
-    }
-
-    public void setMaxDistance(int maxDistance) {
-        this.maxDistance = maxDistance;
     }
 
     public Route getRoute() {
