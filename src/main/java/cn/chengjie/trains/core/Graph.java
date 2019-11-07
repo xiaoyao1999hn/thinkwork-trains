@@ -15,18 +15,23 @@ import java.util.*;
  **/
 public class Graph {
 
-    Map<String, List<Edge>> trainsGraph;
+    private Map<String, List<Edge>> trainsGraph;
 
-    Predicate predicate;
+    private Predicate predicate;
 
-    int stopCount;
+    private int stopCount;
 
-    int maxDistance;
+    private int maxDistance;
 
+    private  boolean isCycle;
 
-    public Graph(List<Edge> list) {
+    public Graph(Builder builder) {
+        this.predicate=builder.predicate;
+        this.stopCount=builder.stopCount;
+        this.maxDistance=builder.maxDistance;
+        this.isCycle=builder.isCycle;
         trainsGraph = new HashMap<>();
-        list.forEach(x -> {
+        builder.trainsList.forEach(x -> {
             List<Edge> temp = Optional.ofNullable(trainsGraph.get(x.getStart())).orElse(new LinkedList<Edge>());
             temp.add(x);
             trainsGraph.put(x.getStart(), temp);
@@ -49,61 +54,88 @@ public class Graph {
     //A,C, AB&AD&AE    BC   CD&CE    DC   EB
 
     public void traverseGraph(Route route, Track currentTrack, String start, String end) {
-        //先保存现场
+        //先保存现场,用于后续递归时还原现场
         Track temp = currentTrack.clone();
-        System.out.println("保存现场: " + temp.getPath());
         List<Edge> trainsPath = trainsGraph.get(start);
-        System.out.println("当前路径: " + currentTrack.getPath() + "，start：" + start);
         for (Edge edge : trainsPath) {
-            //第6题
-//            if (currentTrack.getPath().length()>4) {
-//                continue;
-//            }
-            //第7题
-//            if(currentTrack.getPath().length()>5){
-//                continue;
-//            }
-
-            //第10题的条件
-//            if ((currentTrack.getPathLength() + edge.getDistance()) > 30) {
-//                continue;
-//            }
-
-            //第8,9题
-            if (edge.getEnd().equals(route.getStart())) {
-                currentTrack.getPath().append(edge.getEnd());
+            //是否循环之前走过的路径
+            if (edge.getEnd().equals(route.getStart())&&!isCycle) {
+                currentTrack.add(edge);
                 route.getTrackList().add(currentTrack.clone());
-                System.out.println("满足条件加入队列: 【" + currentTrack.getPath() + "】");
                 currentTrack=temp;
-                System.out.println("恢复现场: " + currentTrack.getPath());
                 continue;
             }
-            if (currentTrack.getPath().indexOf(edge.getEnd()) > -1 && currentTrack.getPath().length() > 2) {
-                System.out.println("条件不满足跳出: " + currentTrack.getPath() + "，start：" + edge.getStart() + " ，end：" + edge.getEnd());
+            //校验是否继续往下找
+            if(predicate.test(new Condition(currentTrack,
+                    stopCount,(currentTrack.getPathLength() + edge.getDistance()),
+                    maxDistance,route,edge))){
                 continue;
             }
-//            if(predicate.test(new Condition(currentTrack,
-//                    stopCount,(currentTrack.getPathLength() + edge.getDistance()),
-//                    maxDistance,route,edge))){
-//                continue;
-//            }
-
             currentTrack.add(edge);
-            //找到目标节点退出,没找到则递归继续找
+            //找到目标节点加入队列
             if (edge.getEnd().equals(end)) {
                 route.getTrackList().add(currentTrack.clone());
-                System.out.println("满足条件加入队列: 【" + currentTrack.getPath() + "】");
             }
             traverseGraph(route, currentTrack, edge.getEnd(), end);
             //遍历完毕之后还原现场
             currentTrack = temp;
-            System.out.println("恢复现场: " + currentTrack.getPath());
         }
-
     }
 
 
+    public  static  class Builder{
+        private List<Edge> trainsList;
+
+        private Predicate predicate;
+
+        private int stopCount;
+
+        private int maxDistance;
+
+        private boolean isCycle;
+
+        public Builder trainsList(List<Edge> trainsList){
+            this.trainsList=trainsList;
+            return this;
+        }
+
+        public Builder predicate(Predicate predicate){
+            this.predicate=predicate;
+            return this;
+        }
+        public Builder stopCount(int stopCount){
+            this.stopCount=stopCount;
+            return this;
+        }
+
+        public Builder maxDistance(int maxDistance){
+            this.maxDistance=maxDistance;
+            return this;
+        }
+
+        public Builder isCycle(boolean isCycle){
+            this.isCycle=isCycle;
+            return this;
+        }
+
+        public Graph build(){
+            return new Graph(this);
+        }
+    }
+
     public void setPredicate(Predicate predicate) {
         this.predicate = predicate;
+    }
+
+    public void setStopCount(int stopCount) {
+        this.stopCount = stopCount;
+    }
+
+    public void setMaxDistance(int maxDistance) {
+        this.maxDistance = maxDistance;
+    }
+
+    public void setCycle(boolean cycle) {
+        isCycle = cycle;
     }
 }

@@ -10,6 +10,6 @@ import cn.chengjie.trains.entity.Condition;
 public class DefaultPredicate implements Predicate {
     @Override
     public boolean test(Condition condition) {
-        return condition.getEdge().getEnd().equals(condition.getRoute().getStart());
+        return condition.getTrack().getPath().indexOf(condition.getEdge().getEnd()) > -1 && condition.getTrack().getPath().length() > 2;
     }
 }
