@@ -29,7 +29,7 @@ public class TrainsShortestDistanceHandler extends TrainsHandler {
             List<Track> trackList=graph.listTrack(start,end);
             int minDistance=Integer.MAX_VALUE;
             for(Track track:trackList){
-                minDistance=track.getPathLength()<minDistance?track.getPathLength():minDistance;
+                minDistance=track.getPathDistance()<minDistance?track.getPathDistance():minDistance;
             }
             return String.valueOf(minDistance);
         }catch (Exception e){

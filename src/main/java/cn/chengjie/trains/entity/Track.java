@@ -2,6 +2,7 @@ package cn.chengjie.trains.entity;
 
 import java.io.*;
 /**
+ * 路径实体类
  * @author ChengJie
  * @desciption
  * @date 2019/11/5 14:33
@@ -10,17 +11,26 @@ public class Track implements Cloneable,Serializable {
 
     private static final long serialVersionUID = 5468335797443850679L;
 
+    /**
+     * 开始节点
+     */
     String start;
 
+    /**
+     * 路径
+     */
     StringBuffer path;
 
-    int pathLength;
+    /**
+     * 距离
+     */
+    int pathDistance;
 
     public Track(String start) {
         this.start = start;
         path = new StringBuffer();
         path.append(start);
-        pathLength = 0;
+        pathDistance = 0;
     }
 
     /**
@@ -28,7 +38,7 @@ public class Track implements Cloneable,Serializable {
      * @param edge
      */
     public void refreshTrack(Edge edge){
-        this.pathLength +=edge.getDistance();
+        this.pathDistance +=edge.getDistance();
         this.path.append(edge.getEnd());
     }
 
@@ -40,12 +50,12 @@ public class Track implements Cloneable,Serializable {
         this.path = path;
     }
 
-    public int getPathLength() {
-        return pathLength;
+    public int getPathDistance() {
+        return pathDistance;
     }
 
-    public void setPathLength(int pathLength) {
-        this.pathLength = pathLength;
+    public void setPathDistance(int pathDistance) {
+        this.pathDistance = pathDistance;
     }
 
 

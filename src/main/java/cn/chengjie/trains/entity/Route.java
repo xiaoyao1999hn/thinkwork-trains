@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 路径管理类
  * @author ChengJie
  * @desciption
  * @date 2019/11/5 14:34

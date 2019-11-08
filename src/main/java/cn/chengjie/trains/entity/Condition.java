@@ -1,6 +1,7 @@
 package cn.chengjie.trains.entity;
 
 /**
+ * 条件参数类，主要用于graph和predicate交互数据
  * @author ：Chengjie
  * @date ：Created in 2019/11/6 23:25
  * @description：

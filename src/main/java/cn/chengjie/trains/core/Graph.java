@@ -83,7 +83,7 @@ public class Graph {
                 continue;
             }
             //校验是否继续往下找
-            if (predicate.test(new Condition(currentTrack,(currentTrack.getPathLength() + edge.getDistance()),route, edge))) {
+            if (predicate.test(new Condition(currentTrack,(currentTrack.getPathDistance() + edge.getDistance()),route, edge))) {
                 continue;
             }
             //更新路径信息
