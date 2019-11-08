@@ -1,9 +1,10 @@
 package cn.chengjie.trains.predicates;
 import cn.chengjie.trains.entity.Condition;
 /**
+ * 最大距离断言器
  * @author ：Chengjie
  * @date ：Created in 2019/11/6 23:09
- * @description：
+ * @description：根据最大距离跳出循环
  */
 public class DistancePredicate implements  Predicate {
 

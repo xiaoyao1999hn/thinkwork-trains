@@ -4,6 +4,7 @@ import cn.chengjie.trains.entity.Edge;
 import java.util.List;
 
 /**
+ * 最大步数辅助类
  * @author ChengJie
  * @desciption
  * @date 2019/11/7 11:13

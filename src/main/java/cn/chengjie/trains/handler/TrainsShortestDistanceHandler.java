@@ -7,8 +7,9 @@ import cn.chengjie.trains.predicates.DefaultPredicate;
 import java.util.List;
 
 /**
+ * 最短路径辅助类
  * @author ChengJie
- * @desciption
+ * @desciption  先遍历出两点之间的所有路径，然后筛选出最短的
  * @date 2019/11/7 11:36
  **/
 public class TrainsShortestDistanceHandler extends TrainsHandler {
@@ -26,6 +27,7 @@ public class TrainsShortestDistanceHandler extends TrainsHandler {
     @Override
     public String execute() {
         try{
+            //先获取两点之间所有路径，然后筛选出最短的路径
             List<Track> trackList=graph.listTrack(start,end);
             int minDistance=Integer.MAX_VALUE;
             for(Track track:trackList){

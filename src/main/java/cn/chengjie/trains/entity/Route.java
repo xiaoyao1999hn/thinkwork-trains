@@ -11,8 +11,14 @@ import java.util.List;
  **/
 public class Route {
 
+    /**
+     * 合乎规则的路径信息
+     */
     List<Track> trackList;
 
+    /**
+     * 起点
+     */
     String start;
 
     public Route(String start){

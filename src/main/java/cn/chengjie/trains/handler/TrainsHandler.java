@@ -7,6 +7,7 @@ import cn.chengjie.trains.predicates.StopPredicate;
 import java.util.List;
 
 /**
+ * 根据步数循环遍历的处理的超类
  * @author ChengJie
  * @desciption
  * @date 2019/11/7 11:23

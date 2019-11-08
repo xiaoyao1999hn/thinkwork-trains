@@ -8,12 +8,24 @@ package cn.chengjie.trains.entity;
  */
 public class Condition {
 
+    /**
+     * 当前路径信息
+     */
     Track track;
 
+    /**
+     * 距离
+     */
     int distance;
 
+    /**
+     * 路径管理类
+     */
     Route route;
 
+    /**
+     * 当前处理边
+     */
     Edge edge;
 
     public Condition(Track track, int distance, Route route, Edge edge) {

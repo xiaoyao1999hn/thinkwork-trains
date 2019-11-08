@@ -75,7 +75,7 @@ public class Graph {
         Track temp = currentTrack.clone();
         List<Edge> trainsPath = trainsGraph.get(start);
         for (Edge edge : trainsPath) {
-            //是否循环之前走过的路径
+            //如何发现起点则判断是否循环之前走过的路径，如果循环则将start节点加入路径继续遍历
             if (edge.getEnd().equals(route.getStart()) && !isCycle) {
                 currentTrack.refreshTrack(edge);
                 route.getTrackList().add(currentTrack.clone());
@@ -92,6 +92,7 @@ public class Graph {
             if (edge.getEnd().equals(end)) {
                 route.getTrackList().add(currentTrack.clone());
             }
+            //递归遍历
             traverseGraph(route, currentTrack, edge.getEnd(), end);
             //遍历完毕之后还原现场
             currentTrack = temp;
@@ -105,6 +106,7 @@ public class Graph {
      */
     public List<Edge> showRoute(List<String> stationList) {
         List<Edge> result = new LinkedList<>();
+        //这里搜索指定路径的边
         for (int i = 0; i < stationList.size() - 1; i++) {
             final int index = i;
             trainsList.stream()
@@ -112,6 +114,7 @@ public class Graph {
                     .filter(x -> x.getEnd().equals(stationList.get(index + 1)))
                     .forEach(x ->result.add(x));
         }
+        //无该路径则报异常
         if(result.size()!=(stationList.size()-1)) throw  new RuntimeException("NO SUCH ROUTE");
         return result;
     }

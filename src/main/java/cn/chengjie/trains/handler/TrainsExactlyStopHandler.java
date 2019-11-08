@@ -6,8 +6,9 @@ import cn.chengjie.trains.entity.Track;
 import java.util.List;
 
 /**
+ * 精准部署路径辅助类
  * @author ChengJie
- * @desciption
+ * @desciption 根据返回的路径列表，筛选出合适的路径并返回
  * @date 2019/11/7 11:22
  **/
 public class TrainsExactlyStopHandler extends TrainsHandler {

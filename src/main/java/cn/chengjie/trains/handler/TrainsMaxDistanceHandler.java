@@ -8,6 +8,7 @@ import cn.chengjie.trains.predicates.DistancePredicate;
 import java.util.List;
 
 /**
+ * 最大距离处理类
  * @author ChengJie
  * @desciption
  * @date 2019/11/7 11:51
