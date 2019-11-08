@@ -39,7 +39,7 @@ public class App {
             List<Handler> handlerList =initHandler(trainsList,stationList);
             //输出
             for (int i=0;i<handlerList.size();i++) {
-                System.out.println("Output #" + (i+1)+ ":" + handlerList.get(i).execute());
+                System.out.println(String.format("Output #%d: %s",i+1,handlerList.get(i).execute()));
             }
         } catch (IOException e) {
             e.printStackTrace();
